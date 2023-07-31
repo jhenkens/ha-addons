@@ -1,0 +1,59 @@
+name: "TCC to MQTT"
+description: "Exposes Honeywell TCC Thermostats as MQTT entities"
+image: johhenkens/tcc2mqtt
+panel_icon: mdi:thermostat
+version: "1.0.3"
+slug: "tcc2mqtt"
+init: false
+startup: application
+arch:
+  - aarch64
+  - amd64
+services:
+  - mqtt:need
+map:
+  - share:rw
+  - config:rw
+environment:
+  tcc2mqtt_config: /data/options.json
+
+options:
+  mqtt:
+    url: mqtt://core-mqtt
+    username:
+    password:
+  username:
+  password:
+  min_temp: 40
+  max_temp: 90
+  temperature_unit: F
+  homeassistant_discovery: true
+  use_away_mode: true
+  away_temperature: 50
+  away_heat_cool_mode: heat
+  use_auto_for_schedule_in_homekit: true
+  devices: []
+  refresh: 300
+  logLevel: info
+  debug: false
+
+schema:
+  mqtt:
+    url: str?
+    username: str
+    password: str
+  username: str
+  password: password
+  min_temp: int(32,100)
+  max_temp: int(32,100)
+  temperature_unit: str
+  homeassistant_discovery: bool
+  use_away_mode: bool
+  away_temperature: int(32,100)
+  away_heat_cool_mode: list(heat|cool)
+  use_auto_for_schedule_in_homekit: bool
+  devices: 
+    - str?
+  refresh: int
+  logLevel: list(fatal|error|warn|info|debug|trace|silent)
+  debug: bool
