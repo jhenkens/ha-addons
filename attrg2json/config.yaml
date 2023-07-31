@@ -4,7 +4,7 @@ image: johhenkens/att_rg_to_json
 environment:
   USE_HOSTNAME: "true"
 panel_icon: mdi:web
-version: "1.2.0"
+version: "1.2.1"
 slug: "attrg2json"
 init: false
 startup: application
