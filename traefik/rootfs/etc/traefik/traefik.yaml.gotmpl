@@ -55,5 +55,11 @@ providers:
 accessLog: {}
 {{- end }}
 
+
+{{- if has $options "insecure_skip_verify" }}
+serversTransport:
+  insecureSkipVerify: {{ $options.insecure_skip_verify }}
+{{- end }}
+
 log:
   level: {{ strings.ToUpper $options.log_level }}
