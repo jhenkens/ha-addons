@@ -2,7 +2,7 @@ name: "TCC to MQTT"
 description: "Exposes Honeywell TCC Thermostats as MQTT entities"
 image: johhenkens/tcc2mqtt
 panel_icon: mdi:thermostat
-version: "1.0.6"
+version: "1.0.9"
 slug: "tcc2mqtt"
 init: false
 startup: application
@@ -55,5 +55,6 @@ schema:
   devices: 
     - str?
   refresh: int
+  change_delay: float(0,10)
   logLevel: list(fatal|error|warn|info|debug|trace|silent)
   debug: bool
