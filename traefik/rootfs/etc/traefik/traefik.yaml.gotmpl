@@ -10,16 +10,33 @@ global:
 entryPoints:
   web:
     address: ":80"
-  web-secure:
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
     address: ":443"
 {{- if has $options "forwarded_headers_insecure" }}
     forwardedHeaders:
       insecure: {{ $options.forwarded_headers_insecure }}
 {{- end }}
+{{- if and (has $options "proxy_protocol_trusted_ips") (gt (len $options.proxy_protocol_trusted_ips) 0) }}
+    proxyProtocol:
+      trustedIPs:
+      {{- range $options.proxy_protocol_trusted_ips }}
+        - "{{ . }}"
+      {{- end }}
+{{- end }}
 
 api:
   dashboard: true
   insecure: true
+
+{{- if has $options "insecure_skip_verify" }}
+serversTransport:
+  insecureSkipVerify: {{ $options.insecure_skip_verify }}
+{{- end }}
 
 {{ if and (has $options "letsencrypt") ($options.letsencrypt.enabled) -}}
 certificatesResolvers:
@@ -53,12 +70,6 @@ providers:
 
 {{ if and (has $options "access_logs") $options.access_logs -}}
 accessLog: {}
-{{- end }}
-
-
-{{- if has $options "insecure_skip_verify" }}
-serversTransport:
-  insecureSkipVerify: {{ $options.insecure_skip_verify }}
 {{- end }}
 
 log:
