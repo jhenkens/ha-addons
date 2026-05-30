@@ -8,6 +8,9 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.1.aaa
+* Fix YAML parse error caused by log level map stripping newline before log section
+
 ## Traefik 3.7.1.aa
 * Fix unknown log_level error by aligning log level options with HA/bashio conventions
   * **Breaking:** log_level values changed to HA format (e.g. `warning` instead of `WARN`, `error` instead of `ERROR`)

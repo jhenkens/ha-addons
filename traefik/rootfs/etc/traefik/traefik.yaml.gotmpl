@@ -90,6 +90,6 @@ providers:
 accessLog: {}
 {{- end }}
 
-{{- $levelMap := dict "trace" "TRACE" "debug" "DEBUG" "info" "INFO" "warning" "WARN" "error" "ERROR" "fatal" "FATAL" -}}
+{{- $levelMap := dict "trace" "TRACE" "debug" "DEBUG" "info" "INFO" "warning" "WARN" "error" "ERROR" "fatal" "FATAL" }}
 log:
   level: {{ index $levelMap $options.log_level | default "ERROR" }}
