@@ -8,9 +8,14 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.1.aa
+* Fix unknown log_level error by aligning log level options with HA/bashio conventions
+  * **Breaking:** log_level values changed to HA format (e.g. `warning` instead of `WARN`, `error` instead of `ERROR`)
+  * `notice` maps to INFO, `all` maps to TRACE, `off` maps to PANIC
+
 ## Traefik 3.7.1.a
 * Fix startup warnings: encoded characters defaults and deprecated delayBeforeCheck option
-* Fix unknown log_level error by using raw log level value from HA options
+
 
 ## Traefik 3.7.1
 * Updated Traefik from 3.7.0 to 3.7.1
