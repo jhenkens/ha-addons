@@ -1,6 +1,6 @@
 # This file defines how things are displayed in HA, options that show, etc.
 name: Traefik
-version: 3.7.5.a
+version: 3.7.5.b
 slug: traefik
 description: |
   Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
@@ -28,7 +28,6 @@ ports:
 ports_description:
   80/tcp: HTTP
   443/tcp: HTTPS
-  9901/tcp: "OCPP WebSocket port (optional, for EV charger OCPP connections)"
   9991/tcp: "Extra entrypoint websecure9991 (optional)"
   9992/tcp: "Extra entrypoint websecure9992 (optional)"
   9993/tcp: "Extra entrypoint websecure9993 (optional)"
