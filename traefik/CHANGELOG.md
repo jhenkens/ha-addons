@@ -8,6 +8,11 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.5
+* Updated Traefik from 3.7.1 to 3.7.5
+* Add extra port
+* Add optional extra entrypoints on ports 9991–9999 (websecure9991–websecure9999), each mirroring websecure; enable by listing port numbers in `extra_entrypoints`
+
 ## Traefik 3.7.1.aaa
 * Fix YAML parse error caused by log level map stripping newline before log section
 

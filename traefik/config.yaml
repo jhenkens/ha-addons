@@ -1,15 +1,12 @@
 # This file defines how things are displayed in HA, options that show, etc.
 name: Traefik
-version: 3.7.1.aaa
+version: 3.7.5
 slug: traefik
 description: |
   Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy. 
 arch:
   - aarch64
   - amd64
-  - armhf
-  - armv7
-  - i386
 startup: system
 init: false
 stage: stable
@@ -18,9 +15,29 @@ url: https://github.com/boomam/home-assistant-addons/tree/master/traefik
 ports:
   80/tcp: 80
   443/tcp: 443
+  9901/tcp: null
+  9991/tcp: null
+  9992/tcp: null
+  9993/tcp: null
+  9994/tcp: null
+  9995/tcp: null
+  9996/tcp: null
+  9997/tcp: null
+  9998/tcp: null
+  9999/tcp: null
 ports_description:
   80/tcp: HTTP
   443/tcp: HTTPS
+  9901/tcp: "OCPP WebSocket port (optional, for EV charger OCPP connections)"
+  9991/tcp: "Extra entrypoint websecure9991 (optional)"
+  9992/tcp: "Extra entrypoint websecure9992 (optional)"
+  9993/tcp: "Extra entrypoint websecure9993 (optional)"
+  9994/tcp: "Extra entrypoint websecure9994 (optional)"
+  9995/tcp: "Extra entrypoint websecure9995 (optional)"
+  9996/tcp: "Extra entrypoint websecure9996 (optional)"
+  9997/tcp: "Extra entrypoint websecure9997 (optional)"
+  9998/tcp: "Extra entrypoint websecure9998 (optional)"
+  9999/tcp: "Extra entrypoint websecure9999 (optional)"
 ingress: true
 ingress_entry: dashboard/
 hassio_role: default
@@ -44,6 +61,7 @@ options:
     challenge_type: dnsChallenge
     provider: cloudflare
     delayBeforeCheck: 10
+  extra_entrypoints: []
   env_vars: []
 schema:
   log_level: list(trace|debug|info|warning|error|fatal)
@@ -61,5 +79,7 @@ schema:
     delayBeforeCheck: int?
     resolvers:
       - str?
+  extra_entrypoints:
+    - int(9991,9999)?
   env_vars:
     - str

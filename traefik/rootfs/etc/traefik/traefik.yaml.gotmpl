@@ -3,6 +3,34 @@
 
 {{- $options := (ds "options") }}
 
+{{- define "secureEntrypoint" -}}
+{{- $name := .name -}}
+{{- $port := .port -}}
+{{- $options := .options }}
+  {{ $name }}:
+    address: ":{{ $port }}"
+    http:
+      encodedCharacters:
+        allowEncodedSlash: false
+        allowEncodedBackSlash: false
+        allowEncodedNullCharacter: false
+        allowEncodedSemicolon: false
+        allowEncodedPercent: false
+        allowEncodedQuestionMark: false
+        allowEncodedHash: false
+{{- if has $options "forwarded_headers_insecure" }}
+    forwardedHeaders:
+      insecure: {{ $options.forwarded_headers_insecure }}
+{{- end }}
+{{- if and (has $options "proxy_protocol_trusted_ips") (gt (len $options.proxy_protocol_trusted_ips) 0) }}
+    proxyProtocol:
+      trustedIPs:
+      {{- range $options.proxy_protocol_trusted_ips }}
+        - "{{ . }}"
+      {{- end }}
+{{- end }}
+{{- end }}
+
 global:
   checkNewVersion: false
   sendAnonymousUsage: false
@@ -23,27 +51,11 @@ entryPoints:
         allowEncodedPercent: false
         allowEncodedQuestionMark: false
         allowEncodedHash: false
-  websecure:
-    address: ":443"
-    http:
-      encodedCharacters:
-        allowEncodedSlash: false
-        allowEncodedBackSlash: false
-        allowEncodedNullCharacter: false
-        allowEncodedSemicolon: false
-        allowEncodedPercent: false
-        allowEncodedQuestionMark: false
-        allowEncodedHash: false
-{{- if has $options "forwarded_headers_insecure" }}
-    forwardedHeaders:
-      insecure: {{ $options.forwarded_headers_insecure }}
+{{- template "secureEntrypoint" (dict "name" "websecure" "port" 443 "options" $options) }}
+{{- if and (has $options "extra_entrypoints") (gt (len $options.extra_entrypoints) 0) }}
+{{- range $options.extra_entrypoints }}
+{{- template "secureEntrypoint" (dict "name" (printf "websecure%d" .) "port" . "options" $options) }}
 {{- end }}
-{{- if and (has $options "proxy_protocol_trusted_ips") (gt (len $options.proxy_protocol_trusted_ips) 0) }}
-    proxyProtocol:
-      trustedIPs:
-      {{- range $options.proxy_protocol_trusted_ips }}
-        - "{{ . }}"
-      {{- end }}
 {{- end }}
 
 api:
