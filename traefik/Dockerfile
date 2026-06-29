@@ -1,14 +1,10 @@
-ARG BUILD_FROM
-
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:20.1.0
 FROM $BUILD_FROM
 
 ARG BUILD_ARCH
-ARG TRAEFIK_VERSION
+ARG TRAEFIK_VERSION=3.7.5
 
-RUN if [ "${BUILD_ARCH}" == "aarch64" ]; then BUILD_ARCH=arm64; \
-    elif [ "${BUILD_ARCH}" == "i386" ]; then BUILD_ARCH=386; \
-    elif [ "${BUILD_ARCH}" == "armhf" ]; then BUILD_ARCH=armv7; \
-    fi && \
+RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then BUILD_ARCH=arm64; fi && \
     apk add --no-cache nginx gomplate && \
     TRAEFIK_ARTIFACT="traefik_v${TRAEFIK_VERSION}_linux_${BUILD_ARCH}.tar.gz" && \
     TRAEFIK_RELEASE_URL="https://github.com/traefik/traefik/releases/download/v${TRAEFIK_VERSION}" && \
