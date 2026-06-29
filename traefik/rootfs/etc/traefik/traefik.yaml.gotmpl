@@ -52,9 +52,10 @@ entryPoints:
         allowEncodedQuestionMark: false
         allowEncodedHash: false
 {{- template "secureEntrypoint" (dict "name" "websecure" "port" 443 "options" $options) }}
-{{- if and (has $options "extra_entrypoints") (gt (len $options.extra_entrypoints) 0) }}
-{{- range $options.extra_entrypoints }}
-{{- template "secureEntrypoint" (dict "name" (printf "websecure%d" .) "port" . "options" $options) }}
+{{- range $port := slice 9991 9992 9993 9994 9995 9996 9997 9998 9999 }}
+{{- $key := printf "extra_entrypoint_%d" $port }}
+{{- if and (has $options $key) (index $options $key) }}
+{{- template "secureEntrypoint" (dict "name" (printf "websecure%d" $port) "port" $port "options" $options) }}
 {{- end }}
 {{- end }}
 

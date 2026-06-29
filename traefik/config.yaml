@@ -1,9 +1,9 @@
 # This file defines how things are displayed in HA, options that show, etc.
 name: Traefik
-version: 3.7.5
+version: 3.7.5a
 slug: traefik
 description: |
-  Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy. 
+  Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
 arch:
   - aarch64
   - amd64
@@ -61,7 +61,15 @@ options:
     challenge_type: dnsChallenge
     provider: cloudflare
     delayBeforeCheck: 10
-  extra_entrypoints: []
+  extra_entrypoint_9991: false
+  extra_entrypoint_9992: false
+  extra_entrypoint_9993: false
+  extra_entrypoint_9994: false
+  extra_entrypoint_9995: false
+  extra_entrypoint_9996: false
+  extra_entrypoint_9997: false
+  extra_entrypoint_9998: false
+  extra_entrypoint_9999: false
   env_vars: []
 schema:
   log_level: list(trace|debug|info|warning|error|fatal)
@@ -79,7 +87,14 @@ schema:
     delayBeforeCheck: int?
     resolvers:
       - str?
-  extra_entrypoints:
-    - int(9991,9999)?
+  extra_entrypoint_9991: bool
+  extra_entrypoint_9992: bool
+  extra_entrypoint_9993: bool
+  extra_entrypoint_9994: bool
+  extra_entrypoint_9995: bool
+  extra_entrypoint_9996: bool
+  extra_entrypoint_9997: bool
+  extra_entrypoint_9998: bool
+  extra_entrypoint_9999: bool
   env_vars:
     - str
