@@ -8,7 +8,7 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
-## Traefik 3.7.5a
+## Traefik 3.7.5.a
 * Fix extra entrypoint config: replaced list option with individual boolean toggles (`extra_entrypoint_9991`–`extra_entrypoint_9999`) for HA UI compatibility
 
 ## Traefik 3.7.5
