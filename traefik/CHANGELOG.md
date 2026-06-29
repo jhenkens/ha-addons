@@ -8,6 +8,9 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.5.b
+* Add optional plain HTTP entrypoint `web9900` on port 9900; enable with `extra_entrypoint_9900` toggle
+
 ## Traefik 3.7.5.a
 * Fix extra entrypoint config: replaced list option with individual boolean toggles (`extra_entrypoint_9991`–`extra_entrypoint_9999`) for HA UI compatibility
 

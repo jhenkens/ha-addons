@@ -15,7 +15,7 @@ url: https://github.com/boomam/home-assistant-addons/tree/master/traefik
 ports:
   80/tcp: 80
   443/tcp: 443
-  9901/tcp: null
+  9900/tcp: null
   9991/tcp: null
   9992/tcp: null
   9993/tcp: null
@@ -28,6 +28,7 @@ ports:
 ports_description:
   80/tcp: HTTP
   443/tcp: HTTPS
+  9900/tcp: "Extra plain HTTP entrypoint web9900 (optional)"
   9991/tcp: "Extra entrypoint websecure9991 (optional)"
   9992/tcp: "Extra entrypoint websecure9992 (optional)"
   9993/tcp: "Extra entrypoint websecure9993 (optional)"
@@ -60,6 +61,7 @@ options:
     challenge_type: dnsChallenge
     provider: cloudflare
     delayBeforeCheck: 10
+  extra_entrypoint_9900: false
   extra_entrypoint_9991: false
   extra_entrypoint_9992: false
   extra_entrypoint_9993: false
@@ -86,6 +88,7 @@ schema:
     delayBeforeCheck: int?
     resolvers:
       - str?
+  extra_entrypoint_9900: bool
   extra_entrypoint_9991: bool
   extra_entrypoint_9992: bool
   extra_entrypoint_9993: bool

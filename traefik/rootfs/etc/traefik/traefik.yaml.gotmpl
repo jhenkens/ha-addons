@@ -51,6 +51,19 @@ entryPoints:
         allowEncodedPercent: false
         allowEncodedQuestionMark: false
         allowEncodedHash: false
+{{- if and (has $options "extra_entrypoint_9900") $options.extra_entrypoint_9900 }}
+  web9900:
+    address: ":9900"
+    http:
+      encodedCharacters:
+        allowEncodedSlash: false
+        allowEncodedBackSlash: false
+        allowEncodedNullCharacter: false
+        allowEncodedSemicolon: false
+        allowEncodedPercent: false
+        allowEncodedQuestionMark: false
+        allowEncodedHash: false
+{{- end }}
 {{- template "secureEntrypoint" (dict "name" "websecure" "port" 443 "options" $options) }}
 {{- range $port := slice 9991 9992 9993 9994 9995 9996 9997 9998 9999 }}
 {{- $key := printf "extra_entrypoint_%d" $port }}
