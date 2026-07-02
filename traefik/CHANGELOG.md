@@ -8,6 +8,9 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.5.c
+* Add `le-compat` certificate resolver alongside `le`; uses `preferredChain: "ISRG Root X1"` for compatibility with older clients that don't trust the newer ISRG root
+
 ## Traefik 3.7.5.b
 * Add optional plain HTTP entrypoint `web9900` on port 9900; enable with `extra_entrypoint_9900` toggle
 
