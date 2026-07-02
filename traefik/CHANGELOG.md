@@ -8,6 +8,9 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.6
+* Updated Traefik from 3.7.5 to 3.7.6
+
 ## Traefik 3.7.5.c
 * Add `le-compat` certificate resolver alongside `le`; uses `preferredChain: "ISRG Root X1"` for compatibility with older clients that don't trust the newer ISRG root
 

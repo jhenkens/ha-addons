@@ -2,7 +2,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base:20.1.0
 FROM $BUILD_FROM
 
 ARG BUILD_ARCH
-ARG TRAEFIK_VERSION=3.7.5
+ARG TRAEFIK_VERSION=3.7.6
 
 RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then BUILD_ARCH=arm64; fi && \
     apk add --no-cache nginx gomplate && \
