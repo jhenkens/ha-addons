@@ -1,6 +1,6 @@
 # This file defines how things are displayed in HA, options that show, etc.
 name: Traefik
-version: 3.7.6.a
+version: 3.7.6.b
 slug: traefik
 description: |
   Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
@@ -63,6 +63,9 @@ options:
     delayBeforeCheck: 10
     compat_resolver: false
     zerossl_resolver: false
+    zerossl_eab:
+      kid: ""
+      hmacEncoded: ""
   extra_entrypoint_9900: false
   extra_entrypoint_9991: false
   extra_entrypoint_9992: false
@@ -92,6 +95,9 @@ schema:
       - str?
     compat_resolver: bool?
     zerossl_resolver: bool?
+    zerossl_eab:
+      kid: str?
+      hmacEncoded: str?
   extra_entrypoint_9900: bool
   extra_entrypoint_9991: bool
   extra_entrypoint_9992: bool

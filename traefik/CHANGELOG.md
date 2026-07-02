@@ -8,6 +8,9 @@ The letter & number are bug fix releases where said issue is not with Traefik, b
 
 # Change Log
 
+## Traefik 3.7.6.b
+* Add `letsencrypt.zerossl_eab` (kid + hmacEncoded) for ZeroSSL EAB credentials
+
 ## Traefik 3.7.6.a
 * Add optional `le-compat` and `le-zerossl` certificate resolvers, each toggled independently under `letsencrypt.compat_resolver` and `letsencrypt.zerossl_resolver` (both off by default)
 

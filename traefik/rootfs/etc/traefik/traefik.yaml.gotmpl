@@ -125,6 +125,11 @@ certificatesResolvers:
       email: "{{ $options.letsencrypt.email }}"
       caServer: "https://acme.zerossl.com/v2/DV90"
       storage: "/ssl/traefik/acme-zerossl.json"
+{{- if and (has $options.letsencrypt "zerossl_eab") (has $options.letsencrypt.zerossl_eab "kid") (ne $options.letsencrypt.zerossl_eab.kid "") }}
+      eab:
+        kid: "{{ $options.letsencrypt.zerossl_eab.kid }}"
+        hmacEncoded: "{{ $options.letsencrypt.zerossl_eab.hmacEncoded }}"
+{{- end }}
 {{- template "acmeChallenge" $options.letsencrypt }}
 {{- end }}
 {{- end }}
