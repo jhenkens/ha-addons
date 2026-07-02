@@ -1,6 +1,6 @@
 # This file defines how things are displayed in HA, options that show, etc.
 name: Traefik
-version: 3.7.6
+version: 3.7.6.a
 slug: traefik
 description: |
   Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.
@@ -61,6 +61,8 @@ options:
     challenge_type: dnsChallenge
     provider: cloudflare
     delayBeforeCheck: 10
+    compat_resolver: false
+    zerossl_resolver: false
   extra_entrypoint_9900: false
   extra_entrypoint_9991: false
   extra_entrypoint_9992: false
@@ -88,6 +90,8 @@ schema:
     delayBeforeCheck: int?
     resolvers:
       - str?
+    compat_resolver: bool?
+    zerossl_resolver: bool?
   extra_entrypoint_9900: bool
   extra_entrypoint_9991: bool
   extra_entrypoint_9992: bool

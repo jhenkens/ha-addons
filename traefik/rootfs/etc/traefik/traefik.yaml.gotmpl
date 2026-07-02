@@ -111,12 +111,22 @@ certificatesResolvers:
       email: "{{ $options.letsencrypt.email }}"
       storage: "/ssl/traefik/acme.json"
 {{- template "acmeChallenge" $options.letsencrypt }}
+{{- if and (has $options.letsencrypt "compat_resolver") $options.letsencrypt.compat_resolver }}
   le-compat:
     acme:
       email: "{{ $options.letsencrypt.email }}"
       storage: "/ssl/traefik/acme-compat.json"
       preferredChain: "ISRG Root X1"
 {{- template "acmeChallenge" $options.letsencrypt }}
+{{- end }}
+{{- if and (has $options.letsencrypt "zerossl_resolver") $options.letsencrypt.zerossl_resolver }}
+  le-zerossl:
+    acme:
+      email: "{{ $options.letsencrypt.email }}"
+      caServer: "https://acme.zerossl.com/v2/DV90"
+      storage: "/ssl/traefik/acme-zerossl.json"
+{{- template "acmeChallenge" $options.letsencrypt }}
+{{- end }}
 {{- end }}
 
 providers:
